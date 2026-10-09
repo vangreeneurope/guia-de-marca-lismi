@@ -178,6 +178,17 @@ footer .sl{font-weight:100;font-size:34px;color:#fff}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .hidden{display:none!important}
 </style>
+<script>
+/* Descargas en navegador (GitHub Pages) */
+if (!(window.claude && window.claude.use)) {
+  window.claude = { use: async () => ({ save: async ({ filename, data }) => {
+    const blob = data instanceof Blob ? data : new Blob([data]);
+    const url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  } }) };
+}
+</script>
 </head>
 <body>
 <header class="top">
